@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const transSchema = new Schema({
+    title:{
+        type:String,
+        required:true
+    },
     amount: {
         type: Number,
         required: true
