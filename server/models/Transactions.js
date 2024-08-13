@@ -7,7 +7,6 @@ const transSchema = new Schema({
     },
     category: {
         type: String,
-        default: others
     },
     type: {
         type: String,
