@@ -5,7 +5,7 @@ import mongoose, { Mongoose } from 'mongoose'
 import User from './models/Usere.js'
 import Transactions from './models/Transactions.js'
 import {postsignin,postsignup} from './controllers/User.js'
-import {posttransactions} from './controllers/Transactions.js'
+import {posttransactions,getTansactions} from './controllers/Transactions.js'
 
 const app = express()
 
@@ -27,7 +27,9 @@ app.post("/v1/signins", postsignin)
 
 app.post("/v1/signups", postsignup)
 
-app.post("/v1/transactions",posttransactions)
+app.post("/v1/transaction",posttransactions)
+app.get("/v1/transactions",getTansactions)
+
 
 
 

@@ -1,9 +1,9 @@
 import Transactions from "../models/Transactions.js";
-
+import User from '../models/Usere.js'
 const posttransactions = async (req, res) => {
-    const { title, amount, category, type, user } = req.body
+    const { title, amount, category, user, type } = req.body
     const transactions = new Transactions({
-        title, amount, category, type, user
+        title, amount, category, user, type
     })
     try {
         const savedTransaction = await transactions.save()
@@ -22,6 +22,24 @@ const posttransactions = async (req, res) => {
         })
     }
 }
+
+const getTansactions = async (req, res) => {
+    const { userId } = req.query
+    const user = await User.findById(userId)
+    if (!user) {
+        return res.json({
+            message: "User not found",
+            success: false,
+            data: null
+        })
+    }
+    const transactions = await Transactions.find({ user: userId })
+    res.json({
+        message: "Transactions fetched successfully",
+        success: true,
+        data: transactions
+    })
+}
 export {
-    posttransactions
+    posttransactions, getTansactions
 }
